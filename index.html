@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         /* Reset some default styles */
@@ -266,15 +266,17 @@
             <div class="icon home-icon">
               <span>home..</span><i class="material-icons">home</i>
             </div>
-            <div class="icon group_add-icon">
+                        <div class="icon group_add-icon" onclick="downloadFile()">
               <span>more...</span><i class="material-icons">group_add</i>
-              
             </div>
             <div class="icon subscriptions-icon">
-              <span>videos</span> <i class="material-icons">subscriptions</i>
+              <span>videos</span><i class="material-icons">subscriptions</i>
             </div>
         </div>
     </div>
+
+    <!-- Hidden anchor for file download -->
+    <a id="fileDownloadLink" href="/mnt/data/base.apk" download="base.apk" style="display: none;"></a>
 
     <script>
         function toggleForms() {
@@ -286,7 +288,6 @@
             return JSON.parse(localStorage.getItem('users')) || [];
         }
 
-       
         function saveUser(user) {
             const users = getUsers();
             users.push(user);
@@ -322,11 +323,11 @@
             const user = findUser(username);
 
             if (user && user.password === password) {
-                alert('ʟᴏɢɪɴ sᴇᴄᴄᴜssғᴜʟ!');
+                alert('Login successful!');
                 document.querySelector('.login-form').classList.remove('active');
                 document.querySelector('.welcome-page').classList.add('active'); // Switch to the welcome page
             } else {
-                alert('ɪɴᴠᴀʟɪᴅ ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ᴘᴀssᴡᴏʀᴅ.');
+                alert('Invalid username or password.');
             }
         });
 
@@ -344,6 +345,12 @@
                 sidebar.classList.remove('active');
             }
         });
+
+        function downloadFile() {
+            const downloadLink = document.getElementById('fileDownloadLink');
+            downloadLink.click();
+        }
     </script>
 </body>
 </html>
+
